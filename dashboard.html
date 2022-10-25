@@ -13,8 +13,8 @@
                 <div class="wrapper">
                     <ul>
                         <h1>Water Level Monitoring System</h1>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Live Monitor</a></li>
+                        <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/dashboard.html">Home</a></li>
+                        <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/liveMonitor.html">Live Monitor</a></li>
                     </ul>
                 </div>
             </nav>
@@ -34,8 +34,9 @@
                             </div>
                         </div>
                         <div class="feature-desc">
-                            <h3>Services Offered</h3>
-                            <p>We love to do this for the fun of it to create, educate and elevate </p>
+                            <h3>Water Tank 1 Level</h3>
+                            <p>Enter a unique waterTankID<input type="text" id="theText">  </p>
+	                        <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
                         </div>
                     </div>
     
@@ -49,8 +50,9 @@
                     </div>
                 </div>
                 <div class="feature-desc">
-                    <h3>Data Storage</h3>
-                    <p>We love to do this for the fun of it to create, educate and elevate </p>
+                    <h3>Water Tank 2 Level</h3>
+                    <p>Enter a unique waterTankID<input type="text" id="theText">  </p>
+	                <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
                 </div>
             </div>
     
@@ -61,8 +63,9 @@
                     </div>
                 </div>
                 <div class="feature-desc">
-                    <h3>Services acquired</h3>
-                    <p>We love to do this for the fun of it to create, educate and elevate </p>
+                    <h3>Water Tank 3 Level</h3>
+                    <p>Enter a unique waterTankID<input type="text" id="theText">  </p>
+	                <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
                 </div>
             </div>
     
@@ -73,8 +76,9 @@
                     </div>
                 </div>
                 <div class="feature-desc">
-                    <h3>Services avoided</h3>
-                    <p>We love to do this for the fun of it to create, educate and elevate </p>
+                    <h3>Water Tank 4 Level</h3>
+                    <p>Enter a unique waterTankID<input type="text" id="theText">  </p>
+                    <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
                 </div>
             </div>
     
@@ -85,8 +89,9 @@
                     </div>
                 </div>
                 <div class="feature-desc">
-                    <h3>Services needed</h3>
-                    <p>We love to do this for the fun of it to create, educate and elevate </p>
+                    <h3>Water Tank 4 Level</h3>
+                    <p>Enter a unique waterTankID<input type="text" id="theText">  </p>
+                    <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
                 </div>
             </div>
     
@@ -97,11 +102,28 @@
                     </div>
                 </div>
                 <div class="feature-desc">
-                    <h3>Services Purchased</h3>
-                    <p>We love to do this for the fun of it to create, educate and elevate </p>
+                    <h3>Water Tank 5 Level</h3>
+                    <p>Enter a unique waterTankID<input type="text" id="theText">  </p>
+                    <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
                 </div>
             </div>
     
         </div>
+
+
+        <script type="text/javascript">
+
+            function updateByAJAX_dbData(){
+                const xhttp=new XMLHttpRequest();
+                xhttp.onload=function(){
+                    document.getElementById("dbdata").innerText=this.responseText;
+                }
+                id=document.getElementById("theText").value;
+                console.log(id);
+                xhttp.open("GET", "/iot/AJAX/retrieve.php?tempdataID="+id);
+                xhttp.send();
+		    }
+
+        </script>
     </body>
 </html>
