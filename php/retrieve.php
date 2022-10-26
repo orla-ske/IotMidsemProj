@@ -1,6 +1,8 @@
 <?php
 require "db.php";
 
+/*$date = date("d-m-y");
+$time = date('h:i:s');
 
 if (!isset($_GET['waterLevel'])) 
     die("water level not specified");
@@ -18,18 +20,16 @@ while ($row)
 {         
     echo " {$row->tempID} {$row->temperature} {$row->groupName}";
     $row=mysqli_fetch_object($q);
-}       
+} */     
 
-/*$temperature=$_GET['temperature'];
-$humidity=$_GET['humidity'];
-//$ldrReading=$_GET['ldrReading'];
+$waterLevel=$_GET['waterLevel'];
+$tankID=$_GET['tankID'];
 
-$sql = "INSERT INTO httpInsert (Temperature,Humidity) VALUES('{$temperature}','{$humidity}')";
+$sql = "INSERT INTO waterLevelRecord (waterLevel,tankID) VALUES('{$waterLevel}','{$tankID}')";
 
 if(mysqli_query($con,$sql))
 echo "record added successfully";
 else 
-echo "failed";*/
-
+echo "failed";
 
 ?>

@@ -40,9 +40,11 @@ nav li{
     margin-right: 0.5rem;
 }
 nav li:first-child{
+
     margin-left: 0rem;
     word-spacing: 5px;
     font-style:rgb(0, 0, 0)
+    
     
 }
 nav a{
@@ -54,13 +56,14 @@ nav li:last-child a{
     background-color:rgb(0, 0, 0);
     color: white;
     border-radius: 20px;
+
 }
 
 .wrapper h1{
    
     font-size: 1.5rem;
     color: rgb(255, 249, 249);
-    padding-right: 83rem;
+    padding-right: 50rem;
     
 }
 
@@ -97,25 +100,31 @@ nav li:last-child a{
     border-radius: 1rem;
 }
 
+.topBox{
+    padding-top: 2rem;
+}
 .display-box{
-    flex-grow: 1;
+  
     display: box;
     padding: 10;
-    padding-top: 10rem;
-    border: solid 1px blue;
+    border: solid 1px rgb(0, 0, 0);
     border-radius: 1rem;
-    height: 20rem;
-    width: 50rem;
-    background-color: blue;
+    height: 5rem;
+    width: 50%;
+    background-color: rgb(0, 0, 0);
     margin: auto;
+    box-sizing: border-box;
  
 }
 
 .display-box h3{
     color:rgb(255, 249, 249);
     align-self: center;
+    padding-top: 1rem;
+    padding-left: 15rem ;
 }
 
 .display-box p{
     color: aliceblue;
+    padding-left: 15rem ;
 }
