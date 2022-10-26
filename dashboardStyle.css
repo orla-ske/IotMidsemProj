@@ -97,4 +97,22 @@ nav li:last-child a{
     border-radius: 1rem;
 }
 
+.display-box{
+    flex-grow: 1;
+    padding-top: 10rem;
+    display: box;
+    padding-left: 50rem;
+    border: solid 1px blue;
+    border-radius: 1rem;
+    padding-bottom: 10rem;
+    height: 20rem;
+    background-color: blue;
+}
 
+.display-box h3{
+    color:rgb(255, 249, 249);
+}
+
+.display-box p{
+    color: aliceblue;
+}
