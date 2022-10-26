@@ -35,7 +35,7 @@
                         </div>
                         <div class="feature-desc">
                             <h3>Water Tank 1 Level</h3>
-	                        <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
+	                        <p> <button onclick="updateByAJAX_dbData1()">Fetch info</button></p>
                         </div>
                     </div>
     
@@ -50,7 +50,7 @@
                 </div>
                 <div class="feature-desc">
                     <h3>Water Tank 2 Level</h3>
-	                <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
+	                <p> <button onclick="updateByAJAX_dbDat2()">Fetch info</button></p>
                 </div>
             </div>
     
@@ -62,7 +62,7 @@
                 </div>
                 <div class="feature-desc">
                     <h3>Water Tank 3 Level</h3>
-	                <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
+	                <p> <button onclick="updateByAJAX_dbData3()">Fetch info</button></p>
                 </div>
             </div>
     
@@ -74,7 +74,7 @@
                 </div>
                 <div class="feature-desc">
                     <h3>Water Tank 4 Level</h3>
-                    <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
+                    <p> <button onclick="updateByAJAX_dbData4()">Fetch info</button></p>
                 </div>
             </div>
     
@@ -85,8 +85,8 @@
                     </div>
                 </div>
                 <div class="feature-desc">
-                    <h3>Water Tank 4 Level</h3>
-                    <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
+                    <h3>Water Tank 5 Level</h3>
+                    <p> <button onclick="updateByAJAX_dbData5()">Fetch info</button></p>
                 </div>
             </div>
     
@@ -97,8 +97,8 @@
                     </div>
                 </div>
                 <div class="feature-desc">
-                    <h3>Water Tank 5 Level</h3>
-                    <p> <button onclick="updateByAJAX_dbData()">Fetch info</button></p>
+                    <h3>Water Tank 6 Level</h3>
+                    <p> <button onclick="updateByAJAX_dbData6()">Fetch info</button></p>
                 </div>
             </div>
 
@@ -114,14 +114,69 @@
 
         <script type="text/javascript">
 
-            function updateByAJAX_dbData(){
+            function updateByAJAX_dbData1(){
+                const xhttp=new XMLHttpRequest();
+                xhttp.onload=function(){
+                    document.getElementById("dbdata").innerText=this.responseText;
+                }
+                id=document.getElementById("1").value;
+                console.log(id);
+                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.send();
+		    }
+
+            function updateByAJAX_dbData2(){
+                const xhttp=new XMLHttpRequest();
+                xhttp.onload=function(){
+                    document.getElementById("dbdata").innerText=this.responseText;
+                }
+                id=document.getElementById("2").value;
+                console.log(id);
+                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.send();
+		    }
+
+            function updateByAJAX_dbData3(){
+                const xhttp=new XMLHttpRequest();
+                xhttp.onload=function(){
+                    document.getElementById("dbdata").innerText=this.responseText;
+                }
+                id=document.getElementById("3").value;
+                console.log(id);
+                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.send();
+		    }
+
+            function updateByAJAX_dbData4(){
                 const xhttp=new XMLHttpRequest();
                 xhttp.onload=function(){
                     document.getElementById("dbdata").innerText=this.responseText;
                 }
                 id=document.getElementById("theText").value;
                 console.log(id);
-                xhttp.open("GET", "/iot/AJAX/retrieve.php?tempdataID="+id);
+                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.send();
+		    }
+
+            function updateByAJAX_dbData5(){
+                const xhttp=new XMLHttpRequest();
+                xhttp.onload=function(){
+                    document.getElementById("dbdata").innerText=this.responseText;
+                }
+                id=document.getElementById("theText").value;
+                console.log(id);
+                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.send();
+		    }
+
+            function updateByAJAX_dbData5(){
+                const xhttp=new XMLHttpRequest();
+                xhttp.onload=function(){
+                    document.getElementById("dbdata").innerText=this.responseText;
+                }
+                id=document.getElementById("theText").value;
+                console.log(id);
+                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
                 xhttp.send();
 		    }
 
