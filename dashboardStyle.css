@@ -99,18 +99,21 @@ nav li:last-child a{
 
 .display-box{
     flex-grow: 1;
-    padding-top: 10rem;
     display: box;
-    padding-left: 50rem;
+    padding: 10;
+    padding-top: 10rem;
     border: solid 1px blue;
     border-radius: 1rem;
-    padding-bottom: 10rem;
     height: 20rem;
+    width: 50rem;
     background-color: blue;
+    margin: auto;
+ 
 }
 
 .display-box h3{
     color:rgb(255, 249, 249);
+    align-self: center;
 }
 
 .display-box p{
