@@ -1,5 +1,10 @@
 <?php
-require "db.php";
+$servername="localhost";
+$username="root";
+$password="";
+$dbname="waterLevelDB";
+
+$con = mysqli_connect($servername,$username,$password,$dbname);
 
 /*$date = date("d-m-y");
 $time = date('h:i:s');
@@ -23,9 +28,9 @@ while ($row)
 } */     
 
 $waterLevel=$_GET['waterLevel'];
-$tankID=$_GET['tankID'];
 
-$sql = "INSERT INTO waterLevelRecord (waterLevel,tankID) VALUES('{$waterLevel}','{$tankID}')";
+
+$sql = "INSERT INTO waterLevelRecord (waterLevel) VALUES('{$waterLevel}')";
 
 if(mysqli_query($con,$sql))
 echo "record added successfully";
