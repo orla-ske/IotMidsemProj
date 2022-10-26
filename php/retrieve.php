@@ -2,12 +2,12 @@
 require "db.php";
 
 
-if (!isset($_GET['tempdataID'])) 
-    die(" tempdataID not specified");
+if (!isset($_GET['waterLevel'])) 
+    die("water level not specified");
 if ($_GET['tempdataID']=='')
-    die(" tempdataID is blank");yb
+    die(" water level is blank");yb
 if (!is_numeric($_GET['tempdataID'] ) )
-    die(" tempdataID is not numeric");
+    die("water Level is not numeric");
 
 $data=array();        
 
@@ -20,7 +20,16 @@ while ($row)
     $row=mysqli_fetch_object($q);
 }       
 
+/*$temperature=$_GET['temperature'];
+$humidity=$_GET['humidity'];
+//$ldrReading=$_GET['ldrReading'];
 
+$sql = "INSERT INTO httpInsert (Temperature,Humidity) VALUES('{$temperature}','{$humidity}')";
+
+if(mysqli_query($con,$sql))
+echo "record added successfully";
+else 
+echo "failed";*/
 
 
 ?>
