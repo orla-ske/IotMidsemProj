@@ -72,7 +72,7 @@ void loop()
         USE_SERIAL.print("[HTTP] begin...\n");
         // configure traged server and url
         //http.begin("https://www.howsmyssl.com/a/check", ca); //HTTPS
-        http.begin("http://192.168.64.2/iot/retrieve.php?waterLevel="+String(ultrasonic.Ranging(CM))); //HTTP
+        http.begin("http://192.168.100.169/IOT/retrieve.php?waterLevel="+String(ultrasonic.Ranging(CM))+"&tankID=1"); //HTTP
 
         USE_SERIAL.print("[HTTP] GET...\n");
         // start connection and send HTTP header
