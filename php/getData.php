@@ -11,13 +11,16 @@ require "db.php";
     
     $data=array();        
 
-    $q=mysqli_query($con,"select * from tempdata where tankID={$_GET['tankID']}");    
+    $q=mysqli_query($con,"select * from waterLevel where tankID={$_GET['tankID']}");    
     
     $row=mysqli_fetch_object($q);
+
     while ($row)
     {         
-        
-        echo " {$row->tankID} {$row->waterLevel}";
+        echo "ID: "
+        echo " {$row->tankID}\n";
+        echo "Current Water Level: "
+        echo "{$row->waterLevel}\n"
         $row=mysqli_fetch_object($q);
     }       
     
