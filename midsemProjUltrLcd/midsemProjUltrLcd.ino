@@ -9,8 +9,10 @@
 #include <HTTPClient.h>
 #include <Ultrasonic.h>
 #include <HTTPClient.h> 
+#include <WiFiClient.h>
 #include <WebServer.h> 
-#include <html.h>
+#include <ESPmDNS.h>
+#include "html.h"
 
 #define USE_SERIAL Serial
 #define LEDRED (4)
@@ -22,12 +24,12 @@ WiFiMulti wifiMulti;
 LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 Ultrasonic ultrasonic(14,27); // (Trig PIN,Echo PIN)
 WebServer server(80);
-char ssidAP[] = "ESP32AP";
-char passwordAP[] = "12345678"; 
+char ssid[] = "Gerald";
+char password[] = "Face12345"; 
 IPAddress local_ip(192,168,2,1); 
 IPAddress gateway(192,168,2,1); 
 IPAddress subnet(255,255,255,0); 
-int value = 60; 
+int value = 1; 
 bool motorState = true; 
 
 
@@ -42,18 +44,19 @@ void setup()
   lcd.print("Testing...");
   pinMode(LEDRED, OUTPUT);
   pinMode(RelayPin, OUTPUT);
+  digitalWrite(LEDRED, HIGH);
 
   USE_SERIAL.begin(115200);
-  WiFi.mode(WIFI_AP);
+  WiFi.mode(WIFI_STA);
   delay(1000);
-  WiFi.softAP(ssidAP,passwordAP);
-  WiFi.softAPConfig(local_ip, gateway, subnet); 
-  server.begin();
-  // server.on("/", base);
+ 
+  WiFi.begin(ssid, password);
+  server.on("/", base);
   server.on("/Manurl",manSwitchFunct);
   server.on("/Autourl",autoSwitchFunct);
   server.on("/starturl",motorStart);
   server.on("/stopurl",motorStop);
+  server.onNotFound(handleNotFound);
 
   USE_SERIAL.println();
   USE_SERIAL.println();
@@ -68,6 +71,8 @@ void setup()
   }
 
   wifiMulti.addAP("DUFIE-HOSTEL", "Duf1e@9723");
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
 
 }
 
@@ -77,10 +82,9 @@ void loop()
   lcd.clear();
   lcd.setCursor(0,0);   //Set cursor to character 2 on line 0
   lcd.print("Water Level(cm)");
-  lcd.setCursor(4, 1);
+  lcd.setCursor(5, 1);
   lcd.print(waterLev); // CM or INC
-  lcd.print("cm");
-  delay(100);
+  delay(10);
 
 if(value == 0){
   if(motorState = true){
@@ -91,7 +95,7 @@ if(value == 0){
   }
 
 }else if(value == 1){
-  if(ultrasonic.Ranging(CM) <= 5){
+  if(ultrasonic.Ranging(CM) <= 98){
 
     digitalWrite(LEDRED, HIGH);
     digitalWrite(RelayPin, HIGH);
@@ -137,9 +141,9 @@ if(value == 0){
     server.handleClient();
 }
 
-// void base(){
-//   server.send(200, "text/html",page);
-// }
+void base(){
+  server.send(200, "text/html",page);
+}
 
 void manSwitchFunct(){
   value = 0; 
@@ -155,4 +159,20 @@ void motorStart(){
 
 void motorStop(){
   motorState = true; 
+}
+
+void handleNotFound() {
+
+  String message = "File Not Found\n\n";
+  message += "URI: ";
+  message += server.uri();
+  message += "\nMethod: ";
+  message += (server.method() == HTTP_GET) ? "GET" : "POST";
+  message += "\nArguments: ";
+  message += server.args();
+  message += "\n";
+  for (uint8_t i = 0; i < server.args(); i++) {
+    message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
+  }
+  server.send(404, "text/plain", message);
 }

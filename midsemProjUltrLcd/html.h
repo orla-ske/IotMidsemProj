@@ -1,4 +1,4 @@
-char page[] PROGMEM= R"(
+char page[] PROGMEM= R"====(
   <!DOCTYPE html>
   <html lang="eng">
 
@@ -227,5 +227,4 @@ char page[] PROGMEM= R"(
       }
   </script>
 
-  </html>
-)";
+  </html>)====";
