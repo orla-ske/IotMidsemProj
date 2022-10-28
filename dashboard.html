@@ -113,7 +113,7 @@
         <div class="topBox">
             <div class="display-box">
                 <h3>Water Tank details: </h3>
-                <p id="dbdata" style="color: rgb(245, 245, 245); font-size: 50%;">hello</p>
+                <p id="dbdata" style="color: rgb(245, 245, 245); font-size: 50%;"></p>
             </div>
         </div>
        
@@ -128,7 +128,7 @@
                 }
                 id= 1;
                 console.log(id);
-                xhttp.open("GET", "/IOT/getData.php?tankID="+1);
+                xhttp.open("GET", "/IOT/getData.php?ID="+id);
                 xhttp.send();
 		    }
 
@@ -137,9 +137,9 @@
                 xhttp.onload=function(){
                     document.getElementById("dbdata").innerText=this.responseText;
                 }
-                id=document.getElementById("2").value;
+                id=2;
                 console.log(id);
-                xhttp.open("GET", "/IOT/getData.php?tankID=2");
+                xhttp.open("GET", "/IOT/getData.php?ID"+id);
                 xhttp.send();
 		    }
 
@@ -148,9 +148,9 @@
                 xhttp.onload=function(){
                     document.getElementById("dbdata").innerText=this.responseText;
                 }
-                id=document.getElementById("3").value;
+                id=3;
                 console.log(id);
-                xhttp.open("GET", "/IOT/getData.php?tankID=3");
+                xhttp.open("GET", "/IOT/getData.php?ID"+id);
                 xhttp.send();
 		    }
 
@@ -159,9 +159,9 @@
                 xhttp.onload=function(){
                     document.getElementById("dbdata").innerText=this.responseText;
                 }
-                id=document.getElementById("theText").value;
+                id=4;
                 console.log(id);
-                xhttp.open("GET", "/IOT/getData.php?tankID=4");
+                xhttp.open("GET", "/IOT/getData.php?ID"+id);
                 xhttp.send();
 		    }
 
@@ -170,9 +170,9 @@
                 xhttp.onload=function(){
                     document.getElementById("dbdata").innerText=this.responseText;
                 }
-                id=document.getElementById("theText").value;
+                id=5;
                 console.log(id);
-                xhttp.open("GET", "/IOT/getData.php?tankID=5");
+                xhttp.open("GET", "/IOT/getData.php?ID"+id);
                 xhttp.send();
 		    }
 
@@ -181,9 +181,9 @@
                 xhttp.onload=function(){
                     document.getElementById("dbdata").innerText=this.responseText;
                 }
-                id=document.getElementById("theText").value;
+                id=6;
                 console.log(id);
-                xhttp.open("GET", "/IOT/getData.php?tankID=6");
+                xhttp.open("GET", "/IOT/getData.php?ID"+id);
                 xhttp.send();
 		    }
 
