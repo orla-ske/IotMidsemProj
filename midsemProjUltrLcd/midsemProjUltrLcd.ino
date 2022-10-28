@@ -10,6 +10,7 @@
 #include <Ultrasonic.h>
 #include <HTTPClient.h> 
 #include <WebServer.h> 
+#include <html.h>
 
 #define USE_SERIAL Serial
 #define LEDRED (4)

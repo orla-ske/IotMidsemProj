@@ -17,10 +17,11 @@ require "db.php";
 
     while ($row)
     {         
-        echo "ID: ";
+        echo "Tank ID: ";
         echo " {$row->tankID}\n";
         echo "Current Water Level: ";
-        echo "{$row->waterLevel}\n";
+        echo "{$row->waterLevel}";
+        echo " cm\n";
         $row=mysqli_fetch_object($q);
     }       
     
