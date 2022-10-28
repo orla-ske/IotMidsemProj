@@ -22,11 +22,10 @@ WiFiMulti wifiMulti;
 LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 Ultrasonic ultrasonic(14,27); // (Trig PIN,Echo PIN)
 WebServer server(80);
+
 char ssidAP[] = "ESP32AP";
 char passwordAP[] = "12345678"; 
-IPAddress local_ip(192,168,2,1); 
-IPAddress gateway(192,168,2,1); 
-IPAddress subnet(255,255,255,0); 
+
 int value = 60; 
 bool motorState = true; 
 
