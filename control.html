@@ -1,189 +1,212 @@
-<!DOCTYPE html> 
-<html lang="eng"> 
-    <head> 
-        <meta charset = "UTF-8">
-        <meta name="viewport" content="width-device-width,initial-scale=1,minimmum-scale=1"> 
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family+Source+Sna+Pro:wght@300;400;600;700&display=swap");
-            :root{
-                --main-color: #08009c6c;
-            }
+<!DOCTYPE html>
+<html lang="eng">
 
-            *{
-                padding: 0;
-                margin: 0;
-                text-decoration: none;
-                list-style-type: none;
-                box-sizing: border-box;
-                font-family: 'Source Sans Pro', sans-serif;
-            } 
-            .wrapper{
-                width: 100%;
-                margin: auto;
-                
-            }
-            nav .wrapper{
-                background-color:rgb(113, 0, 0);
-                display:flex;
-                padding: 1rem 0rem;
-                height: 70px;
-                align-items: center;
-                position:relative;
-                right:0;
-                left:0;
-                top: 0;
-                
-                
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width,initial-scale=1,minimmum-scale=1">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family+Source+Sna+Pro:wght@300;400;600;700&display=swap");
 
-            nav ul{
-                display: flex;
-
-            }
-
-            nav li{
-                margin-left: 2rem;
-                margin-right: 0.5rem;
-            }
-            nav li:first-child{
-                margin-left: 0rem;
-                word-spacing: 5px;
-                font-style:rgb(0, 0, 0)
-                
-            }
-            nav a{
-                
-                font-weight: 500;
-            }
-            nav li:last-child a{
-                padding: .5rem;
-                background-color:rgb(0, 0, 0);
-                color: white;
-                border-radius: 20px;
-            }
-
-            .wrapper h1{
-            
-                font-size: 1.5rem;
-                color: rgb(255, 249, 249);
-                padding-right: 46rem;
-                
-            }  
-
-            .btn {
-                display: block;
-                width: 300px;
-                margin: auto;
-                padding: 30px
-            }
-
-            .btn {
-                font-size: 30px;
-                color: black;
-                text-decoration: none
-            }
-
-            .on {
-                background-color: SkyBlue
-            }
-
-            .off {
-                background-color: LightSteelBlue
-            }
-
-            .zero {
-                background-color: Thistle
-            }
-
-            td {
-                font-size: 30px;
-                margin-top: 50px;
-                margin-bottom: 5px
-            }
-
-            p {
-                font-size: 30px;
-                margin-top: 50px;
-                margin-bottom: 5px
-            }
-
-            h1{
-              text-align: center;
-            }
-        </style>
-        <title>Control Page</title>
-    </head>
-
-    <body>
-        <div class="topWrapper">
-            <nav>
-                <div class="wrapper">
-                    <ul>
-                        <h1>Water Level Monitoring System</h1>
-                        <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/dashboard.html">Home</a></li>
-                        <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/control.html">Control</a></li>
-                        <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/liveMonitor.html">Live Monitor</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-
-        <h1>Control Mode</h1>
-        <table style='width:100%'>
-            <tr>
-            </tr>
-        </table>
-        <table style='width:100%'>
-            <tr>
-                <td style="padding-left: 16rem">Automatic Mode</td>
-                <td style="padding-left: 16rem">Manual Mode</td>
-            </tr>
-            <tr>
-                <td><button class='btn off' id='Auto' onclick='sendData(id)'>Automatic Mode</button></td>
-                <td><button class='btn off' id='Man' onclick='sendData(id)'>Manual Mode</button></td>
-            </tr>
-        </table>
-
-    </body>
-
-    <script>
-        function sendData(butn) {
-            var URL, variab, text;
-            if (butn == 'Auto') {
-                URL = 'Autourl';
-                variab = 'AutoV';
-            }
-            else if (butn == 'Man') {
-                URL = 'Manurl';
-                variab = 'ManV';
-            }
-            if (butn == 'Auto' || butn == 'Man') { // change button class and text 
-                var state = document.getElementById(butn).className;
-                state = (state == 'btn on' ? 'btn off' : 'btn on');
-                text = (state == 'btn on' ? ' Enabled' : ' Disabled');
-                document.getElementById(butn).className = state;
-                document.getElementById(butn).innerHTML = text;
-            }
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function (butn) {
-                if (this.readyState == 4 && this.status == 200)
-                    document.getElementById(variab).innerHTML = this.
-                        responseText;
-            };
-            xhr.open('GET', URL, true);
-            xhr.send();
+        :root {
+            --main-color: #08009c6c;
         }
 
-        setInterval(reload, 1000);
-        function reload() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200)
-                    document.getElementById('counter').innerHTML = this.
-                        responseText;
-            };
-            xhr.open('GET', 'countUrl', true);
-            xhr.send();
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style-type: none;
+            box-sizing: border-box;
+            font-family: 'Source Sans Pro', sans-serif;
         }
-    </script>
+
+        .wrapper {
+            width: 100%;
+            margin: auto;
+
+        }
+
+        nav .wrapper {
+            background-color: rgb(113, 0, 0);
+            display: flex;
+            padding: 1rem 0rem;
+            height: 70px;
+            align-items: center;
+            position: relative;
+            right: 0;
+            left: 0;
+            top: 0;
+
+
+        }
+
+        nav ul {
+            display: flex;
+
+        }
+
+        nav li {
+            margin-left: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        nav li:first-child {
+            margin-left: 0rem;
+            word-spacing: 5px;
+            font-style: rgb(0, 0, 0)
+        }
+
+        nav a {
+
+            font-weight: 500;
+        }
+
+        nav li:last-child a {
+            padding: .5rem;
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border-radius: 20px;
+        }
+
+        .wrapper h1 {
+
+            font-size: 1.5rem;
+            color: rgb(255, 249, 249);
+            padding-right: 46rem;
+
+        }
+
+        .btn {
+            display: block;
+            width: 300px;
+            margin: auto;
+            padding: 30px
+        }
+
+        .btn {
+            font-size: 30px;
+            color: black;
+            text-decoration: none
+        }
+
+        .on {
+            background-color: SkyBlue
+        }
+
+        .off {
+            background-color: LightSteelBlue
+        }
+
+        .zero {
+            background-color: Thistle
+        }
+
+        td {
+            font-size: 30px;
+            margin-top: 50px;
+            margin-bottom: 5px
+        }
+
+        p {
+            font-size: 30px;
+            margin-top: 50px;
+            margin-bottom: 5px
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+    <title>Control Page</title>
+</head>
+
+<body>
+    <div class="topWrapper">
+        <nav>
+            <div class="wrapper">
+                <ul>
+                    <h1>Water Level Monitoring System</h1>
+                    <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/dashboard.html">Home</a>
+                    </li>
+                    <li><a
+                            href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/control.html">Control</a>
+                    </li>
+                    <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/liveMonitor.html">Live
+                            Monitor</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <h1>Control Mode</h1>
+    <table style='width:100%'>
+        <tr>
+        </tr>
+    </table>
+    <table style='width:100%'>
+        <tr>
+            <td style="padding-left: 16rem">Automatic Mode</td>
+            <td style="padding-left: 16rem">Manual Mode</td>
+        </tr>
+        <tr>
+            <td><button class='btn off' id='Auto' onclick='sendData(id)'>Automatic Mode</button></td>
+            <td><button class='btn off' id='Man' onclick='sendData(id)'>Manual Mode</button></td>
+        </tr>
+
+    </table>
+    <div style="text-align: center">
+        <h2>Motor Status</h2>
+    <table style="width: 100%;">
+        <tr>
+            <td><button>Start Motor</button></td>
+            <td><button>Stop Motor</button></td>
+        </tr>
+    </table>
+    </div>
+    
+
+
+</body>
+
+<script>
+    function sendData(butn) {
+        var URL, variab, text;
+        if (butn == 'Auto') {
+            URL = 'Autourl';
+            variab = 'AutoV';
+        }
+        else if (butn == 'Man') {
+            URL = 'Manurl';
+            variab = 'ManV';
+        }
+        if (butn == 'Auto' || butn == 'Man') { // change button class and text 
+            var state = document.getElementById(butn).className;
+            state = (state == 'btn on' ? 'btn off' : 'btn on');
+            text = (state == 'btn on' ? ' Enabled' : ' Disabled');
+            document.getElementById(butn).className = state;
+            document.getElementById(butn).innerHTML = text;
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function (butn) {
+            if (this.readyState == 4 && this.status == 200)
+                document.getElementById(variab).innerHTML = this.
+                    responseText;
+        };
+        xhr.open('GET', URL, true);
+        xhr.send();
+    }
+
+    setInterval(reload, 1000);
+    function reload() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200)
+                document.getElementById('counter').innerHTML = this.
+                    responseText;
+        };
+        xhr.open('GET', 'countUrl', true);
+        xhr.send();
+    }
+</script>
+
 </html>

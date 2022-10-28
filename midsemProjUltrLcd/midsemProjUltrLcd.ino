@@ -8,6 +8,7 @@
 #include <WiFiMulti.h>
 #include <HTTPClient.h>
 #include <Ultrasonic.h>
+#include <HTTPClient.h>  
 
 #define USE_SERIAL Serial
 #define LEDRED (4)
@@ -17,6 +18,12 @@ RTC_DATA_ATTR int bootCount = 0;
 WiFiMulti wifiMulti;
 LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 Ultrasonic ultrasonic(14,27); // (Trig PIN,Echo PIN)
+WebServer server(80);
+char ssidAP[] = "ESP32AP";
+char passwordAP[] = "12345678"; 
+IPAddress local_ip(192,168,2,1); 
+IPAddress gateway(192,168,2,1); 
+IPAddress subnet(255,255,255,0); 
 
 
 
@@ -31,7 +38,12 @@ void setup()
   pinMode(LEDRED, OUTPUT);
 
   USE_SERIAL.begin(115200);
+  WiFi.mode(WIFI_AP);
   delay(1000);
+  Wifi.softAP(ssidAP,passwordAP);
+  WiFi.softAPConfig(local_ip, gateway, subnet); 
+  server.begin();
+  server.on("/", base);
 
   USE_SERIAL.println();
   USE_SERIAL.println();
