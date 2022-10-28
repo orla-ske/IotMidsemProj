@@ -44,6 +44,8 @@ void setup()
   WiFi.softAPConfig(local_ip, gateway, subnet); 
   server.begin();
   server.on("/", base);
+  server.on("/Manurl",manSwitchFunct);
+  server.on("/Autourl",autoSwitchFunct);
 
   USE_SERIAL.println();
   USE_SERIAL.println();
@@ -108,4 +110,17 @@ void loop()
     }
 
     delay(5000);
+    server.handleClient();
+}
+
+void base(){
+  server.send(200, "text/html",page);
+}
+
+void manSwitchFunct(){
+  
+}
+
+void autoSwitchFunct(){
+  
 }
