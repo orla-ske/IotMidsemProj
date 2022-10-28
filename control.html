@@ -158,8 +158,8 @@
         <h2>Motor Status</h2>
     <table style="width: 100%;">
         <tr>
-            <td><button>Start Motor</button></td>
-            <td><button>Stop Motor</button></td>
+            <td><button onclick="switchState('Start')">Start Motor</button></td>
+            <td><button onclick="switchState('Stop')">Stop Motor</button></td>
         </tr>
     </table>
     </div>
@@ -186,6 +186,27 @@
             document.getElementById(butn).className = state;
             document.getElementById(butn).innerHTML = text;
         }
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function (butn) {
+            if (this.readyState == 4 && this.status == 200)
+                document.getElementById(variab).innerHTML = this.
+                    responseText;
+        };
+        xhr.open('GET', URL, true);
+        xhr.send();
+    }
+    
+    function switchState(State) {
+        var URL, variab, text;
+        if (State == 'Start') {
+            URL = 'starturl';
+            variab = 'startV';
+        }
+        else if (butn == 'Stop') {
+            URL = 'stopurl';
+            variab = 'stopV';
+        }
+
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function (butn) {
             if (this.readyState == 4 && this.status == 200)
