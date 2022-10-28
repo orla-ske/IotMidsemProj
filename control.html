@@ -66,7 +66,7 @@
             
                 font-size: 1.5rem;
                 color: rgb(255, 249, 249);
-                padding-right: 77rem;
+                padding-right: 46rem;
                 
             }  
 
@@ -121,8 +121,8 @@
                     <ul>
                         <h1>Water Level Monitoring System</h1>
                         <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/dashboard.html">Home</a></li>
-                        <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/liveMonitor.html">Control</a></li>
-                        <li><a href="">Live Monitor</a></li>
+                        <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/control.html">Control</a></li>
+                        <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/liveMonitor.html">Live Monitor</a></li>
                     </ul>
                 </div>
             </nav>
@@ -134,6 +134,10 @@
             </tr>
         </table>
         <table style='width:100%'>
+            <tr>
+                <td style="padding-left: 16rem">Automatic Mode</td>
+                <td style="padding-left: 16rem">Manual Mode</td>
+            </tr>
             <tr>
                 <td><button class='btn off' id='Auto' onclick='sendData(id)'>Automatic Mode</button></td>
                 <td><button class='btn off' id='Man' onclick='sendData(id)'>Manual Mode</button></td>
@@ -156,9 +160,9 @@
             if (butn == 'Auto' || butn == 'Man') { // change button class and text 
                 var state = document.getElementById(butn).className;
                 state = (state == 'btn on' ? 'btn off' : 'btn on');
-                text = (state == 'btn on' ? butn + ' Enabled' : butn + ' Disabled');
+                text = (state == 'btn on' ? ' Enabled' : ' Disabled');
                 document.getElementById(butn).className = state;
-                document.getElementById(butn).innerHTML = 'Press to turn ' + text;
+                document.getElementById(butn).innerHTML = text;
             }
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function (butn) {

@@ -109,7 +109,7 @@ nav li:last-child a{
     padding: 10;
     border: solid 1px rgb(0, 0, 0);
     border-radius: 1rem;
-    height: 5rem;
+    height: 15rem;
     width: 50%;
     background-color: rgb(0, 0, 0);
     margin: auto;
@@ -121,7 +121,7 @@ nav li:last-child a{
     color:rgb(255, 249, 249);
     align-self: center;
     padding-top: 1rem;
-    padding-left: 15rem ;
+    padding-left: 17rem ;
 }
 
 .display-box p{
