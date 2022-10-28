@@ -14,6 +14,7 @@
                     <ul>
                         <h1>Water Level Monitoring System</h1>
                         <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/dashboard.html">Home</a></li>
+                        <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/control.html">Control</a></li>
                         <li><a href="/Users/orlandokodjo/Downloads/IoT/midsem pROJECT/IotMidsemProj/liveMonitor.html">Live Monitor</a></li>
                     </ul>
                 </div>
@@ -36,6 +37,7 @@
                         <div class="feature-desc">
                             <h3>Water Tank 1 Level</h3>
 	                        <p> <button onclick="updateByAJAX_dbData1()">Fetch info</button></p>
+                            <p id="tank1" style="font-size: 50%"></p>
                         </div>
                     </div>
     
@@ -51,6 +53,7 @@
                 <div class="feature-desc">
                     <h3>Water Tank 2 Level</h3>
 	                <p> <button onclick="updateByAJAX_dbDat2()">Fetch info</button></p>
+                    <p id="tank2" style="font-size: 50%"></p>
                 </div>
             </div>
     
@@ -63,6 +66,7 @@
                 <div class="feature-desc">
                     <h3>Water Tank 3 Level</h3>
 	                <p> <button onclick="updateByAJAX_dbData3()">Fetch info</button></p>
+                    <p id="tank3" style="font-size: 50%"></p>
                 </div>
             </div>
     
@@ -75,6 +79,7 @@
                 <div class="feature-desc">
                     <h3>Water Tank 4 Level</h3>
                     <p> <button onclick="updateByAJAX_dbData4()">Fetch info</button></p>
+                    <p id="tank4" style="font-size: 50%"></p>
                 </div>
             </div>
     
@@ -87,6 +92,7 @@
                 <div class="feature-desc">
                     <h3>Water Tank 5 Level</h3>
                     <p> <button onclick="updateByAJAX_dbData5()">Fetch info</button></p>
+                    <p id="tank5" style="font-size: 50%"></p>
                 </div>
             </div>
     
@@ -99,14 +105,15 @@
                 <div class="feature-desc">
                     <h3>Water Tank 6 Level</h3>
                     <p> <button onclick="updateByAJAX_dbData6()">Fetch info</button></p>
+                    <p id="tank6" style="font-size: 50%"></p>
                 </div>
             </div>
 
         </div>
         <div class="topBox">
             <div class="display-box">
-                <h3>Water Level of: <div id="waterTankID"></div></h3>
-                <p> Returned data is: <div id="dbdata"></div></p>
+                <h3>Water Tank details: </h3>
+                <p><div id="dbdata"></div></p>
             </div>
         </div>
        
@@ -121,7 +128,7 @@
                 }
                 id=document.getElementById("1").value;
                 console.log(id);
-                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.open("GET", "/IOT/getData.php?tankID=1");
                 xhttp.send();
 		    }
 
@@ -132,7 +139,7 @@
                 }
                 id=document.getElementById("2").value;
                 console.log(id);
-                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.open("GET", "/IOT/getData.php?tankID=2");
                 xhttp.send();
 		    }
 
@@ -143,7 +150,7 @@
                 }
                 id=document.getElementById("3").value;
                 console.log(id);
-                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.open("GET", "/IOT/getData.php?tankID=3");
                 xhttp.send();
 		    }
 
@@ -154,7 +161,7 @@
                 }
                 id=document.getElementById("theText").value;
                 console.log(id);
-                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.open("GET", "/IOT/getData.php?tankID=4");
                 xhttp.send();
 		    }
 
@@ -165,18 +172,18 @@
                 }
                 id=document.getElementById("theText").value;
                 console.log(id);
-                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.open("GET", "/IOT/getData.php?tankID=5");
                 xhttp.send();
 		    }
 
-            function updateByAJAX_dbData5(){
+            function updateByAJAX_dbData6(){
                 const xhttp=new XMLHttpRequest();
                 xhttp.onload=function(){
                     document.getElementById("dbdata").innerText=this.responseText;
                 }
                 id=document.getElementById("theText").value;
                 console.log(id);
-                xhttp.open("GET", "/iot/AJAX/retrieve.php?tankID="+tankID);
+                xhttp.open("GET", "/IOT/getData.php?tankID=6");
                 xhttp.send();
 		    }
 

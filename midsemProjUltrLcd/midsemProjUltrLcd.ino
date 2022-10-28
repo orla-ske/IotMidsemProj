@@ -8,15 +8,26 @@
 #include <WiFiMulti.h>
 #include <HTTPClient.h>
 #include <Ultrasonic.h>
+#include <HTTPClient.h> 
+#include <WebServer.h> 
 
 #define USE_SERIAL Serial
 #define LEDRED (4)
+#define RelayPin (13)
 #define uS_TO_S_FACTOR 1000000ULL  /* Conversion factor for micro seconds to seconds */
 #define TIME_TO_SLEEP  5        /* Time ESP32 will go to sleep (in seconds) */
 RTC_DATA_ATTR int bootCount = 0;
 WiFiMulti wifiMulti;
 LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 Ultrasonic ultrasonic(14,27); // (Trig PIN,Echo PIN)
+WebServer server(80);
+char ssidAP[] = "ESP32AP";
+char passwordAP[] = "12345678"; 
+IPAddress local_ip(192,168,2,1); 
+IPAddress gateway(192,168,2,1); 
+IPAddress subnet(255,255,255,0); 
+int value = 60; 
+bool motorState = true; 
 
 
 
@@ -29,9 +40,19 @@ void setup()
   lcd.setCursor(0,0);
   lcd.print("Testing...");
   pinMode(LEDRED, OUTPUT);
+  pinMode(RelayPin, OUTPUT);
 
   USE_SERIAL.begin(115200);
+  WiFi.mode(WIFI_AP);
   delay(1000);
+  WiFi.softAP(ssidAP,passwordAP);
+  WiFi.softAPConfig(local_ip, gateway, subnet); 
+  server.begin();
+  // server.on("/", base);
+  server.on("/Manurl",manSwitchFunct);
+  server.on("/Autourl",autoSwitchFunct);
+  server.on("/starturl",motorStart);
+  server.on("/stopurl",motorStop);
 
   USE_SERIAL.println();
   USE_SERIAL.println();
@@ -51,19 +72,35 @@ void setup()
 
 void loop()
 {
+  int waterLev = 100 - ultrasonic.Ranging(CM);
   lcd.clear();
   lcd.setCursor(0,0);   //Set cursor to character 2 on line 0
   lcd.print("Water Level(cm)");
   lcd.setCursor(4, 1);
-  lcd.print(ultrasonic.Ranging(CM)); // CM or INC
+  lcd.print(waterLev); // CM or INC
   lcd.print("cm");
   delay(100);
 
-  if(ultrasonic.Ranging(CM)<= 15){
-    digitalWrite(LEDRED, HIGH); 
-    delay(1000); 
-    digitalWrite(LEDRED,LOW);
+if(value == 0){
+  if(motorState = true){
+    digitalWrite(RelayPin, HIGH);
+
+  }else{
+    digitalWrite(RelayPin, LOW);    
   }
+
+}else if(value == 1){
+  if(ultrasonic.Ranging(CM) <= 5){
+
+    digitalWrite(LEDRED, HIGH);
+    digitalWrite(RelayPin, HIGH);
+
+  }else{
+      digitalWrite(LEDRED, LOW);
+      digitalWrite(RelayPin, LOW);
+  }
+}
+  
 
    if((wifiMulti.run() == WL_CONNECTED)) {
 
@@ -72,7 +109,7 @@ void loop()
         USE_SERIAL.print("[HTTP] begin...\n");
         // configure traged server and url
         //http.begin("https://www.howsmyssl.com/a/check", ca); //HTTPS
-        http.begin("http://192.168.100.169/IOT/retrieve.php?waterLevel="+String(ultrasonic.Ranging(CM))+"&tankID=1"); //HTTP
+        http.begin("http://192.168.100.169/IOT/retrieve.php?waterLevel="+String(waterLev)+"&tankID=1"); //HTTP
 
         USE_SERIAL.print("[HTTP] GET...\n");
         // start connection and send HTTP header
@@ -96,4 +133,25 @@ void loop()
     }
 
     delay(5000);
+    server.handleClient();
+}
+
+// void base(){
+//   server.send(200, "text/html",page);
+// }
+
+void manSwitchFunct(){
+  value = 0; 
+}
+
+void autoSwitchFunct(){
+  value = 1; 
+}
+
+void motorStart(){
+  motorState = true; 
+}
+
+void motorStop(){
+  motorState = true; 
 }
