@@ -113,7 +113,7 @@
         <div class="topBox">
             <div class="display-box">
                 <h3>Water Tank details: </h3>
-                <p><div id="dbdata"></div></p>
+                <p><div id="dbdata" style="color: rgb(245, 245, 245);"></div></p>
             </div>
         </div>
        
@@ -126,9 +126,9 @@
                 xhttp.onload=function(){
                     document.getElementById("dbdata").innerText=this.responseText;
                 }
-                id=document.getElementById("1").value;
+                id= 1;
                 console.log(id);
-                xhttp.open("GET", "/IOT/getData.php?tankID=1");
+                xhttp.open("GET", "/IOT/getData.php?tankID="+1);
                 xhttp.send();
 		    }
 
