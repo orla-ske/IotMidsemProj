@@ -9,14 +9,14 @@ $query = mysqli_query($con, "SELECT * FROM waterLevel");
 		$tankID = $row['tankID'];
 		$waterLevel = $row['waterLevel'];
  ?>
-			<tbody>
+			<table>
 				<tr>
 					<td><?php echo $ID; ?></td>
 					<td><?php echo $Date; ?></td>
 					<td><?php echo $tankID; ?></td>
 					<td><?php echo $waterLevel; ?></td>
 				</tr>
-			</tbody>
+            </table>
 
 <?php }
 ?>
