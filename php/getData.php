@@ -17,7 +17,7 @@ require "db.php";
 
     while ($row)
     {         
-        echo "Tank ID: ";
+        echo "ID: ";
         echo " {$row->tankID}\n";
         echo "Current Water Level: ";
         echo "{$row->waterLevel}";
