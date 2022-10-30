@@ -1,7 +1,7 @@
 <?php
 require "db.php";
 
-$query = mysqli_query($db, "SELECT * FROM waterLevel");
+$query = mysqli_query($con, "SELECT * FROM waterLevel");
 	while($row = mysqli_fetch_array($query)){
 
 		$ID = $row['ID'];
