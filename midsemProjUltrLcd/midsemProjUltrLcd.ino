@@ -12,6 +12,7 @@
 #include <WiFiClient.h>
 #include <WebServer.h> 
 #include <ESPmDNS.h>
+#include <Ticker.h>
 #include "html.h"
 
 #define USE_SERIAL Serial
@@ -25,7 +26,9 @@ LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x27 for a 16 chars
 Ultrasonic ultrasonic(14,27); // (Trig PIN,Echo PIN)
 WebServer server(80);
 char ssid[] = "DUFIE-HOSTEL";
-char password[] = "Duf1e@9723"; 
+char password[] = "Duf1e@9723";
+Ticker tickerSetHigh;
+Ticker tickerSetLow;
 
 int value = 1; 
 bool motorState = true; 
