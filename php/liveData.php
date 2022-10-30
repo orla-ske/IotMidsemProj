@@ -9,12 +9,18 @@ $query = mysqli_query($con, "SELECT * FROM waterLevel");
 		$tankID = $row['tankID'];
 		$waterLevel = $row['waterLevel'];
  ?>
-			<table>
+			<table style= "border: 1 px solid; border-color:  rgb(0, 0, 0);">
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>tankID</th>
+                    <th>waterLevel</th>
+                </tr>
 				<tr>
-					<td><?php echo $ID; ?></td>
-					<td><?php echo $Date; ?></td>
-					<td><?php echo $tankID; ?></td>
-					<td><?php echo $waterLevel; ?></td>
+					<td style= "text-align: center;"><?php echo $ID; ?></td>
+					<td style= "text-align: center;"><?php echo $Date; ?></td>
+					<td style= "text-align: center;"><?php echo $tankID; ?></td>
+					<td style= "text-align: center;"><?php echo $waterLevel; ?></td>
 				</tr>
             </table>
 
