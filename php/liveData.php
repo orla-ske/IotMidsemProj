@@ -1,19 +1,23 @@
 <?php
 require "db.php";
 
-$sql = "select * from waterLevel";
-$result = mysqli_query($con,$sql);
-$q = mysqli_query($con,"select * from waterLevel");
-$row=mysqli_fetch_object($q);
-if($row){
-  while($row=$result->fetch_assoc()){
-    echo "<tr><td>".$row["ID"]."</td><td>".$row["Date"]."</td></tr>"."</td><td>".$row["tankID"]."</td></tr>"."</td><td>".$row["waterLevel"]."</td></tr>";
-  }
-  echo "</table>";
-}
-else{
-  echo "Table Empty";
-}
+$query = mysqli_query($db, "SELECT * FROM waterLevel");
+	while($row = mysqli_fetch_array($query)){
 
+		$ID = $row['ID'];
+		$Date = $row['Date'];
+		$tankID = $row['tankID'];
+		$waterLevel = $row['waterLevel'];
+ ?>
+			<tbody>
+				<tr>
+					<td><?php echo $ID; ?></td>
+					<td><?php echo $Date; ?></td>
+					<td><?php echo $tankID; ?></td>
+					<td><?php echo $waterLevel; ?></td>
+				</tr>
+			</tbody>
 
+<?php }
 ?>
+</table>
