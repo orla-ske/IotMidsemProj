@@ -127,4 +127,5 @@ nav li:last-child a{
 .display-box p{
     color: rgb(250, 250, 250);
     padding-left: 15rem ;
+    font-size: large;
 }
