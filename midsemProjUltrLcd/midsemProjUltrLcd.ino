@@ -12,42 +12,23 @@
 #include <WiFiClient.h>
 #include <WebServer.h> 
 #include <ESPmDNS.h>
-#include <Ticker.h>
 #include "html.h"
 
 #define USE_SERIAL Serial
 #define LEDRED (4)
 #define RelayPin (13)
 #define uS_TO_S_FACTOR 1000000ULL  /* Conversion factor for micro seconds to seconds */
-#define TIME_TO_SLEEP  300        /* Time ESP32 will go to sleep (in seconds) */
+#define TIME_TO_SLEEP  5        /* Time ESP32 will go to sleep (in seconds) */
 RTC_DATA_ATTR int bootCount = 0;
 WiFiMulti wifiMulti;
 LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 Ultrasonic ultrasonic(14,27); // (Trig PIN,Echo PIN)
 WebServer server(80);
 char ssid[] = "DUFIE-HOSTEL";
-char password[] = "Duf1e@9723";
-Ticker tickerSetHigh;
-Ticker tickerSetLow;
+char password[] = "Duf1e@9723"; 
 
 int value = 1; 
 bool motorState = true; 
-
-void print_wakeup_reason(){
-  esp_sleep_wakeup_cause_t wakeup_reason;
-
-  wakeup_reason = esp_sleep_get_wakeup_cause();
-
-  switch(wakeup_reason)
-  {
-    case ESP_SLEEP_WAKEUP_EXT0 : Serial.println("Wakeup caused by external signal using RTC_IO"); break;
-    case ESP_SLEEP_WAKEUP_EXT1 : Serial.println("Wakeup caused by external signal using RTC_CNTL"); break;
-    case ESP_SLEEP_WAKEUP_TIMER : Serial.println("Wakeup caused by timer"); break;
-    case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println("Wakeup caused by touchpad"); break;
-    case ESP_SLEEP_WAKEUP_ULP : Serial.println("Wakeup caused by ULP program"); break;
-    default : Serial.printf("Wakeup was not caused by deep sleep: %d\n",wakeup_reason); break;
-  }
-}
 
 
 
@@ -102,20 +83,6 @@ void setup()
   wifiMulti.addAP("DUFIE-HOSTEL", "Duf1e@9723");
   server.begin();
   Serial.println("HTTP server started");
-
-
-  ++bootCount;
-  Serial.println("Boot number: " + String(bootCount));
-  print_wakeup_reason();
-
-  esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
-  Serial.println("Setup ESP32 to sleep for every " + String(TIME_TO_SLEEP) +
-  " Seconds");
-
-  Serial.println("Going to sleep now");
-  Serial.flush(); 
-  esp_deep_sleep_start();
-  Serial.println("This will never be printed");
 
 }
 
