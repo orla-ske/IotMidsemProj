@@ -30,8 +30,6 @@ char password[] = "Duf1e@9723";
 int value = 1; 
 bool motorState = true; 
 
-
-
 void setup()
 {
   lcd.init();                      // initialize the lcd 
@@ -94,7 +92,7 @@ void loop()
   lcd.print("Water Level(cm)");
   lcd.setCursor(5, 1);
   lcd.print(waterLev); // CM or INC
-  delay(10);
+  delay(1000);
 
 if(value == 0){
   if(motorState = true){
