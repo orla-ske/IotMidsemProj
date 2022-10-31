@@ -1,7 +1,7 @@
 <?php
 require "db.php";
 
-$query = mysqli_query($con, "SELECT * FROM waterLevel");
+$query = mysqli_query($con, "SELECT * FROM waterLevel ORDER BY Date DESC LIMIT 5");
 	while($row = mysqli_fetch_array($query)){
 
 		$ID = $row['ID'];
