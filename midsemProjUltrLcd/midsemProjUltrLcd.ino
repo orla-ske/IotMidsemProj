@@ -14,42 +14,35 @@
 #include <ESPmDNS.h>
 #include "html.h"
 
-#define USE_SERIAL Serial
 #define LEDRED (4)
 #define RelayPin (13)
-#define uS_TO_S_FACTOR 1000000ULL  /* Conversion factor for micro seconds to seconds */
-#define TIME_TO_SLEEP  5        /* Time ESP32 will go to sleep (in seconds) */
-RTC_DATA_ATTR int bootCount = 0;
+
 WiFiMulti wifiMulti;
-LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x3F,16,2);  
 Ultrasonic ultrasonic(14,27); // (Trig PIN,Echo PIN)
 WebServer server(80);
+
 char ssid[] = "DUFIE-HOSTEL";
 char password[] = "Duf1e@9723"; 
 
 int value = 1; 
 bool motorState = true; 
 
-void setup()
-{
-  lcd.init();                      // initialize the lcd 
+void setup(){
+  Serial.begin(115200);
+  delay(500);
   lcd.init();
-  // Print a message to the LCD.
-  lcd.backlight();
-  lcd.setCursor(0,0);
+  lcd.init(); 
+
+  lcd.backlight(); 
+  lcd.setCursor(0, 0);
   lcd.print("Testing...");
-  pinMode(LEDRED, OUTPUT);
+  pinMode(LEDRED, OUTPUT); 
   pinMode(RelayPin, OUTPUT);
-  digitalWrite(LEDRED, HIGH);
 
-  USE_SERIAL.begin(115200);
   WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
+  WiFi.begin(ssid,password); 
 
-    while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
   Serial.println("");
   Serial.print("Connected to ");
   Serial.println(ssid);
@@ -63,26 +56,15 @@ void setup()
   server.on("/stopurl",motorStop);
   server.onNotFound(handleNotFound);
 
-
-
-
-  USE_SERIAL.println();
-  USE_SERIAL.println();
-  USE_SERIAL.println();
-
-  for(uint8_t t = 4; t > 0; t--) {
-
-    USE_SERIAL.printf("[SETUP] WAIT %d...\n", t);
-    USE_SERIAL.flush();
-    delay(1000);
-
-  }
+  Serial.println();
+  Serial.println();
+  Serial.println();
 
   wifiMulti.addAP("DUFIE-HOSTEL", "Duf1e@9723");
   server.begin();
   Serial.println("HTTP server started");
-
 }
+
 
 void loop()
 {
@@ -92,7 +74,7 @@ void loop()
   lcd.print("Water Level(cm)");
   lcd.setCursor(5, 1);
   lcd.print(waterLev); // CM or INC
-  delay(1000);
+  delay(100);
 
 if(value == 0){
   if(motorState = true){
@@ -124,22 +106,22 @@ if(value == 0){
         //http.begin("https://www.howsmyssl.com/a/check", ca); //HTTPS
         http.begin("http://192.168.100.169/IOT/retrieve.php?waterLevel="+String(waterLev)+"&tankID=1"); //HTTP
 
-        USE_SERIAL.print("[HTTP] GET...\n");
+        Serial.print("[HTTP] GET...\n");
         // start connection and send HTTP header
         int httpCode = http.GET();
 
         // httpCode will be negative on error
         if(httpCode > 0) {
             // HTTP header has been send and Server response header has been handled
-            USE_SERIAL.printf("[HTTP] GET... code: %d\n", httpCode);
+            Serial.printf("[HTTP] GET... code: %d\n", httpCode);
 
             // file found at server
             if(httpCode == HTTP_CODE_OK) {
                 String payload = http.getString();
-                USE_SERIAL.println(payload);
+                Serial.println(payload);
             }
         } else {
-            USE_SERIAL.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+            Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
         }
 
         http.end();
