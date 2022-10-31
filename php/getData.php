@@ -11,7 +11,7 @@ require "db.php";
     
     $data=array();        
 
-    $q=mysqli_query($con,"select * from waterLevel where tankID={$_GET['tankID']}");    
+    $q=mysqli_query($con,"select * from waterLevel where tankID={$_GET['tankID']} ORDER BY Date DESC LIMIT 5");    
     
     $row=mysqli_fetch_object($q);
 

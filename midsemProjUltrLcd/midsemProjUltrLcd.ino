@@ -101,7 +101,7 @@ if(value == 0){
 
         HTTPClient http;
 
-        USE_SERIAL.print("[HTTP] begin...\n");
+        Serial.print("[HTTP] begin...\n");
         // configure traged server and url
         //http.begin("https://www.howsmyssl.com/a/check", ca); //HTTPS
         http.begin("http://192.168.100.169/IOT/retrieve.php?waterLevel="+String(waterLev)+"&tankID=1"); //HTTP
